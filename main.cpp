@@ -5,24 +5,30 @@
 
 #define STRING_LENGHT 100
 
-/*void shuffle(char arr[][STRING_LENGHT], size_t n) {
-  for (size_t i = 0; i < n;) 
-  {
-    size_t j = i + rand() % (n - i);
-    // Reject this shuffle if the element we're about to place
-    // is the same as the previous one
-    // 
-    if (i > 0 && strcmp(arr[j], arr[i-1]) == 0) i = 0;
-    else 
+void Shuffle(char (*answrs)[STRING_LENGHT], int size) 
+{
+    for (int i = 0; i < size;) 
     {
-    //   Otherwise, place element i and move to the next one
-      char t[] = arr[i];
-      arr[i] = arr[j];
-      arr[j] = t;
-      ++i;
+        int j = i + rand() % (size - i);
+        /* Reject this shuffle if the element we're about to place
+        * is the same as the previous one
+        */
+        if (i > 0 && strcmp(answrs[j], answrs[i-1]) == 0) i = 0;
+        else 
+        {
+            /* Otherwise, place element i and move to the next one*/
+            char t[STRING_LENGHT];
+            strcpy(t,answrs[i]);
+            strcpy(answrs[i],answrs[j]);
+            strcpy(answrs[j],t);
+            /*char t = answrs[i];
+            answrs[i] = answrs[j];
+            answrs[j] = t;*/
+            ++i;
+        
+        }   
     }
-  }
-}*/
+}
 
 void SimpleQuestion(const char question[], const char tAnswr[], int count,...)
 {
@@ -40,15 +46,17 @@ void SimpleQuestion(const char question[], const char tAnswr[], int count,...)
     }
     va_end(list);
 
-    //shuffle(answrs,count+1);
+    Shuffle(answrs,count+1);
 
-    printf("%s\n%s\n%s\n",answrs[0],answrs[1],answrs[2]);
-    
+    for(int i = 0; i<count+1; i++)
+    {
+        printf("%s\n",answrs[i]);
+    }
 }
 
 int main() 
 {
     srand(time(NULL));
     printf("\n");
-    SimpleQuestion("Otazka?","Je to otazka",2,"Neni","Nevim");
+    SimpleQuestion("Otazka?","Je to otazka",3,"Neni","Nevim","Mozna");
 }

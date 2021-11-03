@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/main.cpp
+iostream
+-
+stdarg.h
+-
+string.h
+-
+time.h
+-
+
