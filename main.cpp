@@ -3,20 +3,21 @@
 #include <string.h>
 #include <time.h>
 
-#define STRING_LENGHT 100
+#define STRING_LENGHT 1000
 #define ASCII_a 97
 
 void Shuffle(char (*answrs)[STRING_LENGHT], int size) 
 {
-    for (int i = 0; i < size;) 
+    for (unsigned int i = 0; i < size;) 
     {
-        int j = i + rand() % (size - i);
+        unsigned int j = i + rand() % (size - i);
+        
         /* Reject this shuffle if the element we're about to place
         * is the same as the previous one
         */
-        if (i > 0 && strcmp(answrs[j], answrs[i-1]) == 0) i = 0;
+        /*if (i > 0 && strcmp(answrs[j], answrs[i-1]) == 0) i = 0;
         else 
-        {
+        {*/
             /* Otherwise, place element i and move to the next one*/
             char t[STRING_LENGHT];
             strcpy(t,answrs[i]);
@@ -27,11 +28,11 @@ void Shuffle(char (*answrs)[STRING_LENGHT], int size)
             answrs[j] = t;*/
             ++i;
         
-        }   
+        //}   
     }
 }
 
-void SimpleQuestion(const char question[], const char tAnswr[], int count,...)
+void SimpleTestQuestion(const char question[], const char tAnswr[], int count,...)
 {
     char tAnswrCh;
     char userAnswr;
@@ -83,5 +84,8 @@ int main()
 {
     srand(time(NULL));
     printf("\n");
-    SimpleQuestion("Otazka?","Je to otazka",3,"Neni","Nevim","Mozna");
+    SimpleTestQuestion("Otazka?","Je to otazka",3,"Neni","Nevim","Mozna");
+    SimpleTestQuestion("Find the impostor","000O000000",9,"0000000000","0000000000","0000000000"
+    ,"0000000000","0000000000","0000000000","0000000000","0000000000","0000000000");
+    SimpleTestQuestion("Jsem dobrej?","Ano",1,"Ne");
 }
