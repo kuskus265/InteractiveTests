@@ -4,6 +4,7 @@
 #include <time.h>
 
 #define STRING_LENGHT 100
+#define ASCII_a 97
 
 void Shuffle(char (*answrs)[STRING_LENGHT], int size) 
 {
@@ -32,9 +33,12 @@ void Shuffle(char (*answrs)[STRING_LENGHT], int size)
 
 void SimpleQuestion(const char question[], const char tAnswr[], int count,...)
 {
+    char tAnswrCh;
+    char userAnswr;
+    char answrs[count+1][STRING_LENGHT];
+
     printf("%s\n",question);
 
-    char answrs[count+1][STRING_LENGHT];
     strcpy(answrs[0],tAnswr);
 
     va_list list;
@@ -50,8 +54,29 @@ void SimpleQuestion(const char question[], const char tAnswr[], int count,...)
 
     for(int i = 0; i<count+1; i++)
     {
-        printf("%s\n",answrs[i]);
+        char answrChar = ASCII_a+i;
+        if(!strcmp(answrs[i],tAnswr))
+        {
+            tAnswrCh = answrChar;
+        }
+        printf("%c) %s\n",answrChar,answrs[i]);
     }
+
+    do
+    {
+        printf("Answer: ");
+        scanf(" %c",&userAnswr);
+        if(userAnswr > ASCII_a+count||userAnswr < ASCII_a)
+        {
+            printf("Not defined answer!\n");
+        }
+    } while (userAnswr > ASCII_a+count||userAnswr < ASCII_a);
+    
+    if(userAnswr == tAnswrCh) printf("Correct! :)\n");
+    else printf("Wrong! :(\n");
+    /*printf("UA: %c\n",userAnswr);
+    printf("TA: %c\n",tAnswrCh);*/
+    printf("\n");
 }
 
 int main() 
