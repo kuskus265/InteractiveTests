@@ -1,0 +1,12 @@
+types of questions:
+    1. multi answer
+    2. single answer
+    3 free answer(int, string...)
+
+features:
+    timer
+    question skip
+    number of tries
+    automatic validation at the end/abandonment
+
+    
