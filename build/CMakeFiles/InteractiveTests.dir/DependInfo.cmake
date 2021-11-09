@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/Questions.cpp" "/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/build/CMakeFiles/InteractiveTests.dir/Questions.cpp.o"
   "/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/main.cpp" "/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/build/CMakeFiles/InteractiveTests.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

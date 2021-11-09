@@ -877,12 +877,12 @@ CMakeFiles/ContinuousSubmit.dir/clean:
 CMakeFiles/InteractiveTests.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/InteractiveTests.dir/build.make CMakeFiles/InteractiveTests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/InteractiveTests.dir/build.make CMakeFiles/InteractiveTests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/build/CMakeFiles --progress-num=1,2 "Built target InteractiveTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/build/CMakeFiles --progress-num=1,2,3 "Built target InteractiveTests"
 .PHONY : CMakeFiles/InteractiveTests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/InteractiveTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/InteractiveTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/build/CMakeFiles 0
 .PHONY : CMakeFiles/InteractiveTests.dir/rule

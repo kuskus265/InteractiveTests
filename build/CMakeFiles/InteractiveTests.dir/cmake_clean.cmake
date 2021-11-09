@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/InteractiveTests.dir/Questions.cpp.o"
   "CMakeFiles/InteractiveTests.dir/main.cpp.o"
   "InteractiveTests"
   "InteractiveTests.pdb"
