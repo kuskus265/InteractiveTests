@@ -48,6 +48,7 @@ void SimpleTestQuestion(const char question[], const char tAnswr[], int count,..
     {
         printf("Answer: ");
         scanf(" %c",&userAnswr); //zadání odpovědi
+        while (getchar() != '\n'); //vyprazdneni bufferu - přečte se jen první znak z několika zadaných a zbatek se smaže
         if(userAnswr > ASCII_a+count||userAnswr < ASCII_a) //pokud odpověď neopdovídá intervalu možností otázky
         {
             printf("Not defined answer!\n");
