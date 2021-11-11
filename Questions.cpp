@@ -59,5 +59,8 @@ void SimpleTestQuestion(const char question[], const char tAnswr[], int count,..
     else printf("Wrong! :(\n");
     /*printf("UA: %c\n",userAnswr);
     printf("TA: %c\n",tAnswrCh);*/
-    printf("\n");
+    printf("Press ENTER to continue!\n");
+    getchar();
+    system("@cls||clear");
+    //printf("\n");
 }
