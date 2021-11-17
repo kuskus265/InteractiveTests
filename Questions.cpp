@@ -1,4 +1,5 @@
 #include "Questions.h"
+//#include <stdio.h>
 
 void Shuffle(char (*answrs)[STRING_LENGHT], int size) //pole stringů, jeho velikost
 {
@@ -109,7 +110,8 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF,...) //
 
     printf("Answers: ");
     scanf(" %s",&userAnswr[0]); //zadání odpovědí
-    printf("%s\n", userAnswr);
+    while (getchar() != '\n'); //vyprazdneni bufferu
+    //printf("%s\n", userAnswr);
     //printf("%s\n", tAnswrsCh);
     for(int i = 0; i < strlen(userAnswr); i++) //vyhodnocení odpovědí
     {
@@ -144,8 +146,46 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF,...) //
     if(k) printf("There are %d correct answers left.\n", k);
 
     printf("Press ENTER to continue!\n");
-    while (getchar() != '\n'); //vyprazdneni bufferu
     getchar();
     system("@cls||clear"); //vymazání konzole
     //printf("\n");
+}
+
+void TextQuestion(const char question[], int count,...)
+{
+    char userAnswr[STRING_LENGHT];
+    char answrs[count][STRING_LENGHT];
+    short int isCorrect = 0;
+
+    printf("%s\n",question); //otázka
+
+    va_list list;
+    va_start(list,count);
+
+    for(int i = 0; i<count; i++) //kopírování možných odpovědí z listu do pole
+    {
+        strcpy(answrs[i],va_arg(list,const char*));
+    }
+    va_end(list);
+
+    printf("Answer: ");
+    scanf(" %[^\n]", &userAnswr[0]); //cti string i s mezerami
+    //gets
+    while (getchar() != '\n'); //vyprazdneni bufferu
+    //printf("%s\n",userAnswr);
+
+    for(int i = 0; i < count; i++) //porovnani odpovedi se spravnymi
+    {
+        if(!strcmp(userAnswr, answrs[i])) isCorrect = 1;
+    }
+
+    if(isCorrect) //pokud byla odpověd správná
+    {
+        printf("Correct! :)\n");
+    }
+    else printf("Wrong! :(\n");
+
+    printf("Press ENTER to continue!\n");
+    getchar();
+    system("@cls||clear"); //vymazání konzole
 }
