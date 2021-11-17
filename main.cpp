@@ -9,4 +9,6 @@ int main()
     SimpleTestQuestion("Find the impostor","000O000000",9,"0000000000","0000000000","0000000000"
     ,"0000000000","0000000000","0000000000","0000000000","0000000000","0000000000");
     SimpleTestQuestion("Jsem dobrej?","Ano",1,"Ne");
+    MultAnswrTestQuestion("Ovoce?",3,4,"Jablko","Boruvka","Malina","Meloun","Okurka","Brambora","Chleba");
+    MultAnswrTestQuestion("Never gonna...",2,2,"give you up","let you down","say hello","make you smile");
 }

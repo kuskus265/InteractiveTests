@@ -51,7 +51,7 @@ void SimpleTestQuestion(const char question[], const char tAnswr[], int count,..
         while (getchar() != '\n'); //vyprazdneni bufferu - přečte se jen první znak z několika zadaných a zbatek se smaže
         if(userAnswr > ASCII_a+count||userAnswr < ASCII_a) //pokud odpověď neopdovídá intervalu možností otázky
         {
-            printf("Not defined answer!\n");
+            printf("Not defined answer: %c!\n",userAnswr);
         }
     } while (userAnswr > ASCII_a+count||userAnswr < ASCII_a); //opakuj, dokud není odpověď z intervalu
     
@@ -61,6 +61,91 @@ void SimpleTestQuestion(const char question[], const char tAnswr[], int count,..
     printf("TA: %c\n",tAnswrCh);*/
     printf("Press ENTER to continue!\n");
     getchar();
-    system("@cls||clear");
+    system("@cls||clear"); //vymazání konzole
+    //printf("\n");
+}
+
+void MultAnswrTestQuestion(const char question[], int countT, int countF,...) //otázka, počet správných odpovědí, počet špatných odpovědí, list - nejprv správné odpovědi, potom špatné
+{
+    int count = countT+countF;
+    char tAnswrs[countT][STRING_LENGHT]; //pole správných odpovědí
+    char tAnswrsCh[countT]; //písmenka správných odpovědí
+    char userAnswr[count+1]; //udpověď uživatele
+    char answrs[count][STRING_LENGHT]; //pole všech odpovědí včetně správné
+    int k = 0; //pomocná proměnná
+
+    printf("%s\n",question); //otázka
+
+    va_list list;
+    va_start(list,countF);
+
+    for(int i = 0; i < countT; i++)
+    {
+        strcpy(tAnswrs[i],va_arg(list,const char*)); //kopírování správných odpovědí z listu do pole správných
+        strcpy(answrs[i],tAnswrs[i]); //kopírování správných odpovědí do pole všech
+    }
+
+    for(int i = 0; i<countF; i++) //kopírování špatných odpovědí z listu do pole všech
+    {
+        strcpy(answrs[i+countT],va_arg(list,const char*));
+    }
+    va_end(list);
+
+    Shuffle(answrs,count); //zamíchání
+
+    for(int i = 0; i<count; i++) //projít odpovědi, připsat písmenko, najít správnou, uložit její písmenko
+    {
+        char answrChar = ASCII_a+i; //momentální písmenko otázky
+        for(int j = 0; j < countT; j++)
+        {
+            if(!strcmp(answrs[i],tAnswrs[j])) //je tato odpověd správná?
+            {
+                tAnswrsCh[k] = answrChar; //pokud ano, ulož její písmenko
+                k++;
+            }
+        }
+        printf("%c) %s\n",answrChar,answrs[i]); //vypiš odpověď
+    }
+
+    printf("Answers: ");
+    scanf(" %s",&userAnswr[0]); //zadání odpovědí
+    printf("%s\n", userAnswr);
+    //printf("%s\n", tAnswrsCh);
+    for(int i = 0; i < strlen(userAnswr); i++) //vyhodnocení odpovědí
+    {
+        if(userAnswr[i] > ASCII_a+count-1||userAnswr[i] < ASCII_a-1) //pokud odpověď neopdovídá intervalu možností otázky
+        {
+            if(userAnswr[i]=='\0') continue; //konec uživatelských odpovědí
+            printf("Not defined answer: %c!\n",userAnswr[i]);
+        }
+        else
+        {
+            short int isCorrect = 0; //proměnná pro uložení správnosti odpovědi
+            for(int j = 0; j < countT; j++)
+            {
+                if(userAnswr[i] == tAnswrsCh[j]) //pokud odpověď stejná jako nějaká ze správných
+                {
+                    tAnswrsCh[j] = '0';
+                    isCorrect = 1;
+                }
+            }
+            if(isCorrect) //pokud byla odpověd správná
+            {
+                printf("Correct! :)\n");
+            }
+            else printf("Wrong! :(\n");
+        }
+    }
+    k=0;
+    for (int i = 0; i < countT; i++) //vyhodnocení počtu neuhodlých správných odpovědí
+    {
+        if(tAnswrsCh[i]!='0') k++;
+    }
+    if(k) printf("There are %d correct answers left.\n", k);
+
+    printf("Press ENTER to continue!\n");
+    while (getchar() != '\n'); //vyprazdneni bufferu
+    getchar();
+    system("@cls||clear"); //vymazání konzole
     //printf("\n");
 }
