@@ -7,28 +7,73 @@ int main()
 
     printf("\n");
 
-    FILE* header = fopen("headers.txt","r");
-    int numOfTests = getc(header)-'0';
+    FILE* header = fopen("headers.txt","r"); //načtení hlavičkového souboru
+    int numOfTests = getc(header)-'0'; //pocet testů celkem
     getc(header); //cteni konce radku
     struct testHeader testHeaders[numOfTests];
     for(int i = 0; i < numOfTests; i++) //načtení hlaviček testů do pole
     {
-        char temp[STRING_LENGHT];
+        char temp[STRING_LENGHT]; //temporary string pro hodnotu kategorie
         fgets(testHeaders[i].name, STRING_LENGHT, header);
+        testHeaders[i].name[strcspn(testHeaders[i].name, "\n")] = 0; //odstranění end of line
         fgets(temp, STRING_LENGHT, header);
-        testHeaders[i].category = atoi(temp);
-
-        printf("%d) %s",i+1,testHeaders[i].name); //enter je uz ve stringu
+        testHeaders[i].category = atoi(temp); //převod ze string na int
     }
     fclose(header);
 
-    unsigned int chosenTest;
+    categoryMenu: //návrat na výběr kategorie
+    int numOfCat = sizeof(categoriesN) / sizeof(categoriesN[0]); //počet kategorií
+    for(int i = 0; i < numOfCat;i++)
+    {
+        printf("%d) %s\n",i+1,categoriesN[i]); //tisk kategorií
+    }
+
+    unsigned int chosenCategory; //vybraná kategorie
+    do
+    {
+        printf("Choose category: ");
+        scanf("%d", &chosenCategory);
+        chosenCategory == 0 ? chosenCategory = numOfCat + 1 : chosenCategory=chosenCategory; //znemožnění nuly
+        if(chosenCategory > numOfCat) printf("Not defined category!\n");
+    } while (chosenCategory > numOfCat);
+
+    unsigned short int position = 1; //pozice v tisknutém seznamu
+    for(int i = 0; i < numOfTests; i++)
+    {
+        if(testHeaders[i].category == chosenCategory) //projde pole testů a vypíše jen vybranou kategorii
+        {
+            testHeaders[i].position = position;
+            printf("%d) %s\n",position,testHeaders[i].name);
+            position++; //navýšení pozice
+        }
+        else testHeaders[i].position = 0; //nulování pozice testu - podle toho se bude hledat vybraný test
+    }
+    printf("%d) Back\n",position); //vytištění možnosti zpět
+
+    unsigned int chosenTestPosition; //vybraný test (pozice v menu = tesHeaders.position)
     do
     {
         printf("Choose test: ");
-        scanf("%d", &chosenTest);
-        if(chosenTest >= numOfTests) printf("Not defined test!\n");
-    } while (chosenTest >= numOfTests);
+        scanf("%d", &chosenTestPosition);
+        if(chosenTestPosition > position || chosenTestPosition == 0) printf("Not defined test!\n");
+    } while (chosenTestPosition > position || chosenTestPosition == 0);
+    if(chosenTestPosition == position)
+    {
+        system("@cls||clear"); //vymazání konzole
+        goto categoryMenu; //pokud zvolena možnost zpět, jdi na začítek menu kategorií
+    }
+
+    struct testHeader chosenTest;
+    for(int i = 0; i < numOfTests; i++)
+    {
+        if(testHeaders[i].position == chosenTestPosition)
+        {
+            chosenTest = testHeaders[i];
+            break;
+        }
+    }
+
+    printf("\nYou have chosen test: %s\n", chosenTest.name);
 
     /*printf("\n");
     SimpleTestQuestion("Otazka?","Je to otazka",3,"Neni","Nevim","Mozna");
