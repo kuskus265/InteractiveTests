@@ -64,7 +64,7 @@ int main()
     }
 
     struct testHeader chosenTest;
-    for(int i = 0; i < numOfTests; i++)
+    for(int i = 0; i < numOfTests; i++) //hledání vybraného testu
     {
         if(testHeaders[i].position == chosenTestPosition)
         {
@@ -72,8 +72,17 @@ int main()
             break;
         }
     }
-
     printf("\nYou have chosen test: %s\n", chosenTest.name);
+
+    char testAddr[STRING_LENGHT] = "tests/"; //adresa testu
+    strcat(testAddr,chosenTest.name);
+    strcat(testAddr,".txt");
+    printf("Address is: %s\n", testAddr);
+
+    while (getchar() != '\n'); //vyprazdneni bufferu
+    printf("Press ENTER to start test!\n");
+    getchar();
+    system("@cls||clear"); //vymazání konzole
 
     /*printf("\n");
     SimpleTestQuestion("Otazka?","Je to otazka",3,"Neni","Nevim","Mozna");
