@@ -1,5 +1,6 @@
 #include "Questions.h"
 //#include <stdio.h>
+#include <cstdlib>
 
 void Shuffle(char (*answrs)[STRING_LENGHT], int size) //pole stringů, jeho velikost
 {
