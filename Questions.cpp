@@ -14,13 +14,15 @@ void Shuffle(char (*answrs)[STRING_LENGHT], int size) //pole stringů, jeho veli
     }
 }
 
-void SimpleTestQuestion(const char question[], const char tAnswr[], int count, char (*list)[STRING_LENGHT]) //otázka, správná odpověď, počet špatných, špatné odpovědi
+int SimpleTestQuestion(const char question[], const char tAnswr[], int count, char (*list)[STRING_LENGHT],FILE* output) //otázka, správná odpověď, počet špatných, špatné odpovědi
 {
     char tAnswrCh; //písmneko správné odpovědi
     char userAnswr; //udpověď uživatele
     char answrs[count+1][STRING_LENGHT]; //pole všech odpovědí včetně správné
+    int score = 0;
 
     printf("%s\n",question); //otázka
+    fprintf(output,"\n%s\n",question);
 
     strcpy(answrs[0],tAnswr); //kopírování správné odpovědi do pole všech
 
@@ -48,6 +50,7 @@ void SimpleTestQuestion(const char question[], const char tAnswr[], int count, c
             tAnswrCh = answrChar; //pokud ano, ulož její písmenko
         }
         printf("%c) %s\n",answrChar,answrs[i]); //vypiš odpověď
+        fprintf(output,"%c) %s\n",answrChar,answrs[i]);
     }
 
     do //cyklus pro zadání uživatelské odpovědi
@@ -61,17 +64,30 @@ void SimpleTestQuestion(const char question[], const char tAnswr[], int count, c
         }
     } while (userAnswr > ASCII_a+count||userAnswr < ASCII_a); //opakuj, dokud není odpověď z intervalu
     
-    if(userAnswr == tAnswrCh) printf("Correct! :)\n"); //pokud odpověď stejná jako správná odpověď
-    else printf("Wrong! :(\n");
+    fprintf(output,"Answer: %c\n",userAnswr);
+
+    if(userAnswr == tAnswrCh)
+    {
+        printf("Correct! :)\n"); //pokud odpověď stejná jako správná odpověď
+        fprintf(output,"Correct! :)\n");
+        score = 1;
+    }
+    else 
+    {
+        printf("Wrong! :(\n");
+        fprintf(output,"Wrong! :(\n");
+    }
     /*printf("UA: %c\n",userAnswr);
     printf("TA: %c\n",tAnswrCh);*/
     printf("Press ENTER to continue!\n");
     getchar();
     system("@cls||clear"); //vymazání konzole
-    //printf("\n");
+
+    if(score>0) return 1;
+    else return 0;
 }
 
-void MultAnswrTestQuestion(const char question[], int countT, int countF, char (*list)[STRING_LENGHT]) //otázka, počet správných odpovědí, počet špatných odpovědí, list - nejprv správné odpovědi, potom špatné
+int MultAnswrTestQuestion(const char question[], int countT, int countF, char (*list)[STRING_LENGHT],FILE* output) //otázka, počet správných odpovědí, počet špatných odpovědí, list - nejprv správné odpovědi, potom špatné
 {
     int count = countT+countF;
     char tAnswrs[countT][STRING_LENGHT]; //pole správných odpovědí
@@ -79,8 +95,10 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF, char (
     char userAnswr[count+1]; //udpověď uživatele
     char answrs[count][STRING_LENGHT]; //pole všech odpovědí včetně správné
     int k = 0; //pomocná proměnná
+    int score = 0;
 
     printf("%s\n",question); //otázka
+    fprintf(output,"\n%s\n",question);
 
     /*va_list list;
     va_start(list,countF);
@@ -122,6 +140,7 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF, char (
             }
         }
         printf("%c) %s\n",answrChar,answrs[i]); //vypiš odpověď
+        fprintf(output,"%c) %s\n",answrChar,answrs[i]);
     }
 
     printf("Answers: ");
@@ -129,12 +148,14 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF, char (
     while (getchar() != '\n'); //vyprazdneni bufferu
     //printf("%s\n", userAnswr);
     //printf("%s\n", tAnswrsCh);
+    fprintf(output,"Answers: %s\n",userAnswr);
     for(int i = 0; i < strlen(userAnswr); i++) //vyhodnocení odpovědí
     {
         if(userAnswr[i] > ASCII_a+count-1||userAnswr[i] < ASCII_a-1) //pokud odpověď neopdovídá intervalu možností otázky
         {
             if(userAnswr[i]=='\0') continue; //konec uživatelských odpovědí
             printf("Not defined answer: %c!\n",userAnswr[i]);
+            fprintf(output,"Not defined answer: %c!\n",userAnswr[i]);
         }
         else
         {
@@ -150,8 +171,15 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF, char (
             if(isCorrect) //pokud byla odpověd správná
             {
                 printf("Correct! :)\n");
+                fprintf(output,"Correct! :)\n");
+                score++;
             }
-            else printf("Wrong! :(\n");
+            else 
+            {
+                printf("Wrong! :(\n");
+                fprintf(output,"Wrong! :(\n");
+                score = INT16_MIN; //žádné body
+            }
         }
     }
     k=0;
@@ -159,21 +187,31 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF, char (
     {
         if(tAnswrsCh[i]!='0') k++;
     }
-    if(k) printf("There are %d correct answers left.\n", k);
+    if(k)
+    {
+        printf("There are %d correct answers left.\n", k);
+        fprintf(output,"There are %d correct answers left.\n", k);
+        score = INT16_MIN; //žádné body
+    }
 
     printf("Press ENTER to continue!\n");
     getchar();
     system("@cls||clear"); //vymazání konzole
     //printf("\n");
+
+    if(score>0) return 1;
+    else return 0;
 }
 
-void TextQuestion(const char question[], int count, char (*list)[STRING_LENGHT])
+int TextQuestion(const char question[], int count, char (*list)[STRING_LENGHT],FILE* output)
 {
     char userAnswr[STRING_LENGHT];
     char answrs[count][STRING_LENGHT];
     short int isCorrect = 0;
+    int score = 0;
 
     printf("%s\n",question); //otázka
+    fprintf(output,"\n%s\n",question);
 
     /*va_list list;
     va_start(list,count);
@@ -194,7 +232,7 @@ void TextQuestion(const char question[], int count, char (*list)[STRING_LENGHT])
     //gets
     while (getchar() != '\n'); //vyprazdneni bufferu
     //printf("%s\n",userAnswr);
-
+    fprintf(output,"Answer: %s\n",userAnswr);
     for(int i = 0; i < count; i++) //porovnani odpovedi se spravnymi
     {
         if(!strcmp(userAnswr, answrs[i])) isCorrect = 1;
@@ -203,10 +241,19 @@ void TextQuestion(const char question[], int count, char (*list)[STRING_LENGHT])
     if(isCorrect) //pokud byla odpověd správná
     {
         printf("Correct! :)\n");
+        fprintf(output,"Correct! :)\n");
+        score = 1;
     }
-    else printf("Wrong! :(\n");
+    else 
+    {
+        printf("Wrong! :(\n");
+        fprintf(output,"Wrong! :(\n");
+    }
 
     printf("Press ENTER to continue!\n");
     getchar();
     system("@cls||clear"); //vymazání konzole
+
+    if(score>0) return 1;
+    else return 0;
 }

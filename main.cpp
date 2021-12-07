@@ -84,7 +84,10 @@ int main()
     system("@cls||clear"); //vymazání konzole
 
     int numOfQuestions; //počet otázek
-    int score;
+    int score = 0;
+
+    FILE* output = fopen("output.txt","w");
+    fprintf(output,"%s\n",chosenTest.name);
 
     FILE* testf = fopen(testAddr,"r"); //otevři test
     numOfQuestions = atoi(fgets(temp, STRING_LENGHT, testf)); //převod počtu otázek na int
@@ -112,7 +115,7 @@ int main()
                     list[i][strcspn(list[i], "\n")] = 0; //odstranění end of line
                 }
 
-                SimpleTestQuestion(question,tAnswr,count,list); //volání funkce otázky s přečtenými daty
+                score = score + SimpleTestQuestion(question,tAnswr,count,list,output); //volání funkce otázky s přečtenými daty
                 
                 break;
             }
@@ -129,7 +132,7 @@ int main()
                     list[i][strcspn(list[i], "\n")] = 0; //odstranění end of line
                 }
 
-                MultAnswrTestQuestion(question,countT,countF,list); //volání funkce otázky s přečtenými daty
+                score = score + MultAnswrTestQuestion(question,countT,countF,list,output); //volání funkce otázky s přečtenými daty
 
                 break;
             }
@@ -145,7 +148,7 @@ int main()
                     list[i][strcspn(list[i], "\n")] = 0; //odstranění end of line
                 }
 
-                TextQuestion(question,count,list); //volání funkce otázky s přečtenými daty
+                score = score + TextQuestion(question,count,list,output); //volání funkce otázky s přečtenými daty
 
                 break;
             }
@@ -157,7 +160,13 @@ int main()
 
     gettimeofday(&end, 0); //čas konce
     double timeTaken = (end.tv_sec - begin.tv_sec) + (end.tv_usec - begin.tv_usec)*1e-6; //výpočet času
-    printf("Time: %.3f s\n", timeTaken);
+    printf("\nTime: %.3f s\n", timeTaken);
+    printf("Score: %d out of %d\n",score,numOfQuestions);
+
+    fprintf(output,"\nTime: %.3f s\n", timeTaken);
+    fprintf(output,"Score: %d out of %d\n",score,numOfQuestions);
+
+    fclose(output);
     
     /*int poc = 3;
     char spatneOdp[poc][STRING_LENGHT] = {"jedna","DVA","3"};
