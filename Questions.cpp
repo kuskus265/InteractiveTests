@@ -98,7 +98,7 @@ int MultAnswrTestQuestion(const char question[], int countT, int countF, char (*
     int k = 0; //pomocná proměnná
     int score = 0;
 
-    printf("%s\n",question); //otázka
+    printf("%s\nThere are %d correct answers\n",question, countT); //otázka
     fprintf(output,"\n%s\n",question);
 
     /*va_list list;
