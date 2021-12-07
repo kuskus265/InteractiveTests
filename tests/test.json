@@ -1,0 +1,26 @@
+{
+    "Test": {
+      "name": "nějáký random",
+      "description": "lolec",
+      "type": 0,
+      "pass_score": 1,
+      "time_limit": 0
+    },
+    "Questions": {
+      "questions": [
+        {
+          "def": "mám nos?",
+          "answers": [
+            {
+              "defa": "yespes",
+              "is_right": true
+            }
+            {
+                "defa": "voldemort",
+                "is_right": false
+              }
+          ]
+        }
+      ]
+    }
+  }
