@@ -7,6 +7,10 @@ int main()
 
     printf("\n");
 
+    char name[STRING_LENGHT];
+    printf("Please enter your name: ");
+    scanf("%s",&name[0]);
+
     char temp[STRING_LENGHT]; //temporary string pro int a chvilkové věci xD
     FILE* header = fopen("headers.txt","r"); //načtení hlavičkového souboru
     int numOfTests = atoi(fgets(temp, STRING_LENGHT, header)); //pocet testů celkem
@@ -20,21 +24,24 @@ int main()
     }
     fclose(header);
 
-    categoryMenu: //návrat na výběr kategorie
+    categoryMenu: //návrat na výběr kategorie - ano, je tady goto, ale je jen jedno místo, kam se program vrací :D
     int numOfCat = sizeof(categoriesN) / sizeof(categoriesN[0]); //počet kategorií
     for(int i = 0; i < numOfCat;i++)
     {
         printf("%d) %s\n",i+1,categoriesN[i]); //tisk kategorií
     }
+    printf("%d) Exit program\n",numOfCat+1); //konec programu
 
     unsigned int chosenCategory; //vybraná kategorie
     do
     {
         printf("Choose category: ");
         scanf("%d", &chosenCategory);
-        chosenCategory == 0 ? chosenCategory = numOfCat + 1 : chosenCategory=chosenCategory; //znemožnění nuly
+        if(chosenCategory==numOfCat+1) return 0; //ukončí program
+        chosenCategory == 0 ? chosenCategory = numOfCat + 10 : chosenCategory=chosenCategory; //znemožnění nuly
         if(chosenCategory > numOfCat) printf("Not defined category!\n");
     } while (chosenCategory > numOfCat);
+    system("@cls||clear"); //vymazání konzole
 
     unsigned short int position = 1; //pozice v tisknutém seznamu
     for(int i = 0; i < numOfTests; i++)
@@ -160,13 +167,20 @@ int main()
 
     gettimeofday(&end, 0); //čas konce
     double timeTaken = (end.tv_sec - begin.tv_sec) + (end.tv_usec - begin.tv_usec)*1e-6; //výpočet času
+    printf("%s:\n",name);
     printf("\nTime: %.3f s\n", timeTaken);
     printf("Score: %d out of %d\n",score,numOfQuestions);
 
-    fprintf(output,"\nTime: %.3f s\n", timeTaken);
+    fprintf(output,"%s:\n",name);
+    fprintf(output,"Time: %.3f s\n", timeTaken);
     fprintf(output,"Score: %d out of %d\n",score,numOfQuestions);
 
     fclose(output);
+
+    printf("Press ENTER to go to the menu!\n");
+    getchar();
+    system("@cls||clear"); //vymazání konzole
+    goto categoryMenu; // návrat do menu
     
     /*int poc = 3;
     char spatneOdp[poc][STRING_LENGHT] = {"jedna","DVA","3"};

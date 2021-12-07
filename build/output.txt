@@ -1,18 +1,18 @@
 VideoGameTrivia
 
 WHat is the name of the main protagonist in Legend of Zelda series?
-a) Korok
-b) Zelda
+a) Zelda
+b) Mipha
 c) Link
-d) Mipha
-Answer: b
+d) Korok
+Answer: a
 Wrong! :(
 
 The original trilogy of the Spyro series was realeased for:
-a) Sony Playstation
-b) Sega Saturn
-c) Nintendo 64
-Answer: a
+a) Nintendo 64
+b) Sony Playstation
+c) Sega Saturn
+Answer: b
 Correct! :)
 
 What was the release date of original Doom?
@@ -20,24 +20,23 @@ Answer: 1993
 Correct! :)
 
 The sword that is wielded by main protagonist of Legend of Zelda series is called:
-a) The Penetrator
-b) Master Sword
+a) Diamond Sword
+b) Keyblade
 c) Night's Edge
-d) Keyblade
+d) The Penetrator
 e) The Sword That Seals The Darkness
-f) Diamond Sword
-Answers: abc
-Wrong! :(
+f) Master Sword
+Answers: ef
 Correct! :)
-Wrong! :(
-There are 1 correct answers left.
+Correct! :)
 
 What was Mario's first job?
 a) Carpenter
-b) Plumber
-c) Hooker
+b) Hooker
+c) Plumber
 Answer: a
 Correct! :)
+matej:
 
-Time: 22.051 s
-Score: 3 out of 5
+Time: 18.201 s
+Score: 4 out of 5
