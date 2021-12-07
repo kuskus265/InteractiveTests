@@ -19,6 +19,6 @@ struct testHeader
 };
 
 void Shuffle(char (*answrs)[STRING_LENGHT], int size); //míchání otázek
-void SimpleTestQuestion(const char question[], const char tAnswr[], int count,...); //jednoduchá otázka s 1 správnou odpovědí
-void MultAnswrTestQuestion(const char question[], int countT, int countF,...); //více správných odpovědí
-void TextQuestion(const char question[], int count,...); //textová otázka
+void SimpleTestQuestion(const char question[], const char tAnswr[], int count, char (*list)[STRING_LENGHT]); //jednoduchá otázka s 1 správnou odpovědí
+void MultAnswrTestQuestion(const char question[], int countT, int countF, char (*list)[STRING_LENGHT]); //více správných odpovědí
+void TextQuestion(const char question[], int count, char (*list)[STRING_LENGHT]); //textová otázka

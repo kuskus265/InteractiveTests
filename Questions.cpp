@@ -14,7 +14,7 @@ void Shuffle(char (*answrs)[STRING_LENGHT], int size) //pole stringů, jeho veli
     }
 }
 
-void SimpleTestQuestion(const char question[], const char tAnswr[], int count,...) //otázka, správná odpověď, počet špatných, špatné odpovědi
+void SimpleTestQuestion(const char question[], const char tAnswr[], int count, char (*list)[STRING_LENGHT]) //otázka, správná odpověď, počet špatných, špatné odpovědi
 {
     char tAnswrCh; //písmneko správné odpovědi
     char userAnswr; //udpověď uživatele
@@ -24,14 +24,19 @@ void SimpleTestQuestion(const char question[], const char tAnswr[], int count,..
 
     strcpy(answrs[0],tAnswr); //kopírování správné odpovědi do pole všech
 
-    va_list list;
+    /*va_list list;
     va_start(list,count);
 
     for(int i = 0; i<count; i++) //kopírování špatných odpovědí z listu do pole všech
     {
         strcpy(answrs[i+1],va_arg(list,const char*));
     }
-    va_end(list);
+    va_end(list);*/
+
+    for(int i = 0; i<count; i++) //kopírování špatných odpovědí z listu do pole všech
+    {
+        strcpy(answrs[i+1],list[i]);
+    }
 
     Shuffle(answrs,count+1); //zamíchání
 
@@ -66,7 +71,7 @@ void SimpleTestQuestion(const char question[], const char tAnswr[], int count,..
     //printf("\n");
 }
 
-void MultAnswrTestQuestion(const char question[], int countT, int countF,...) //otázka, počet správných odpovědí, počet špatných odpovědí, list - nejprv správné odpovědi, potom špatné
+void MultAnswrTestQuestion(const char question[], int countT, int countF, char (*list)[STRING_LENGHT]) //otázka, počet správných odpovědí, počet špatných odpovědí, list - nejprv správné odpovědi, potom špatné
 {
     int count = countT+countF;
     char tAnswrs[countT][STRING_LENGHT]; //pole správných odpovědí
@@ -77,7 +82,7 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF,...) //
 
     printf("%s\n",question); //otázka
 
-    va_list list;
+    /*va_list list;
     va_start(list,countF);
 
     for(int i = 0; i < countT; i++)
@@ -90,7 +95,18 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF,...) //
     {
         strcpy(answrs[i+countT],va_arg(list,const char*));
     }
-    va_end(list);
+    va_end(list);*/
+
+    for(int i = 0; i < countT; i++)
+    {
+        strcpy(tAnswrs[i],list[i]); //kopírování správných odpovědí z listu do pole správných
+        strcpy(answrs[i],tAnswrs[i]); //kopírování správných odpovědí do pole všech
+    }
+
+    for(int i = 0; i<countF; i++) //kopírování špatných odpovědí z listu do pole všech
+    {
+        strcpy(answrs[i+countT],list[i+countT]);
+    }
 
     Shuffle(answrs,count); //zamíchání
 
@@ -151,7 +167,7 @@ void MultAnswrTestQuestion(const char question[], int countT, int countF,...) //
     //printf("\n");
 }
 
-void TextQuestion(const char question[], int count,...)
+void TextQuestion(const char question[], int count, char (*list)[STRING_LENGHT])
 {
     char userAnswr[STRING_LENGHT];
     char answrs[count][STRING_LENGHT];
@@ -159,14 +175,19 @@ void TextQuestion(const char question[], int count,...)
 
     printf("%s\n",question); //otázka
 
-    va_list list;
+    /*va_list list;
     va_start(list,count);
 
     for(int i = 0; i<count; i++) //kopírování možných odpovědí z listu do pole
     {
         strcpy(answrs[i],va_arg(list,const char*));
     }
-    va_end(list);
+    va_end(list);*/
+    
+    for(int i = 0; i<count; i++) //kopírování možných odpovědí z listu do pole
+    {
+        strcpy(answrs[i],list[i]);
+    }
 
     printf("Answer: ");
     scanf(" %[^\n]", &userAnswr[0]); //cti string i s mezerami

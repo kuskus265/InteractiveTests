@@ -17,7 +17,7 @@ stdio.h
 -
 
 /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/main.cpp
-time.h
+sys/time.h
 -
 Questions.h
 /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/Questions.h

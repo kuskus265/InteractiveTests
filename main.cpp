@@ -1,4 +1,4 @@
-#include <time.h>
+#include <sys/time.h>
 #include "Questions.h"
 
 int main() 
@@ -7,13 +7,12 @@ int main()
 
     printf("\n");
 
+    char temp[STRING_LENGHT]; //temporary string pro int a chvilkové věci xD
     FILE* header = fopen("headers.txt","r"); //načtení hlavičkového souboru
-    int numOfTests = getc(header)-'0'; //pocet testů celkem
-    getc(header); //cteni konce radku
+    int numOfTests = atoi(fgets(temp, STRING_LENGHT, header)); //pocet testů celkem
     struct testHeader testHeaders[numOfTests];
     for(int i = 0; i < numOfTests; i++) //načtení hlaviček testů do pole
     {
-        char temp[STRING_LENGHT]; //temporary string pro hodnotu kategorie
         fgets(testHeaders[i].name, STRING_LENGHT, header);
         testHeaders[i].name[strcspn(testHeaders[i].name, "\n")] = 0; //odstranění end of line
         fgets(temp, STRING_LENGHT, header);
@@ -83,6 +82,92 @@ int main()
     printf("Press ENTER to start test!\n");
     getchar();
     system("@cls||clear"); //vymazání konzole
+
+    int numOfQuestions; //počet otázek
+    int score;
+
+    FILE* testf = fopen(testAddr,"r"); //otevři test
+    numOfQuestions = atoi(fgets(temp, STRING_LENGHT, testf)); //převod počtu otázek na int
+
+    struct timeval begin, end; //structy pro začátek a konec testu (čas)
+    gettimeofday(&begin, 0); //čas začátku
+    
+    for(int i = 0; i < numOfQuestions; i++) //opakuj podle počtu otázek v testu
+    {
+        char question[STRING_LENGHT];
+        switch (atoi(fgets(temp, STRING_LENGHT, testf))) //větvení podle typu otázky
+        {
+            case 1: //jedna správná odpověď
+            {
+                fgets(question, STRING_LENGHT, testf); //otázka
+                question[strcspn(question, "\n")] = 0; //odstranění end of line
+                int count = atoi(fgets(temp, STRING_LENGHT, testf)); //počet špatných odpovědí v int
+                char tAnswr[STRING_LENGHT];
+                char list[count][STRING_LENGHT];
+                fgets(tAnswr, STRING_LENGHT, testf); //správná odpoěď
+                tAnswr[strcspn(tAnswr, "\n")] = 0; //odstranění end of line
+                for (int i = 0; i < count; i++) //čtení špatých odpovědí
+                {
+                    fgets(list[i], STRING_LENGHT, testf);
+                    list[i][strcspn(list[i], "\n")] = 0; //odstranění end of line
+                }
+
+                SimpleTestQuestion(question,tAnswr,count,list); //volání funkce otázky s přečtenými daty
+                
+                break;
+            }
+            case 2: //více správných odpovědí
+            {
+                fgets(question, STRING_LENGHT, testf); //otázka
+                question[strcspn(question, "\n")] = 0; //odstranění end of line
+                int countT = atoi(fgets(temp, STRING_LENGHT, testf)); //počet správných odpovědí v int
+                int countF = atoi(fgets(temp, STRING_LENGHT, testf)); //počet špatných odpovědí v int
+                char list[countT+countF][STRING_LENGHT];
+                for (int i = 0; i < countT+countF; i++) //čtení správných a špatných odpovědí
+                {
+                    fgets(list[i], STRING_LENGHT, testf);
+                    list[i][strcspn(list[i], "\n")] = 0; //odstranění end of line
+                }
+
+                MultAnswrTestQuestion(question,countT,countF,list); //volání funkce otázky s přečtenými daty
+
+                break;
+            }
+            case 3: //textová odpověď
+            {
+                fgets(question, STRING_LENGHT, testf); //otázka
+                question[strcspn(question, "\n")] = 0; //odstranění end of line
+                int count = atoi(fgets(temp, STRING_LENGHT, testf)); //počet správných odpovědí v int
+                char list[count][STRING_LENGHT];
+                for (int i = 0; i < count; i++) //čtení správných odpovědí
+                {
+                    fgets(list[i], STRING_LENGHT, testf);
+                    list[i][strcspn(list[i], "\n")] = 0; //odstranění end of line
+                }
+
+                TextQuestion(question,count,list); //volání funkce otázky s přečtenými daty
+
+                break;
+            }
+        }
+        fgets(temp, STRING_LENGHT, testf); //čtení oddělovače otázek - ?!!**
+        temp[strcspn(temp, "\n")] = 0; //odstranění end of line - kdyby bylo potřeba s tím pracovat
+    }
+    fclose(testf);
+
+    gettimeofday(&end, 0); //čas konce
+    double timeTaken = (end.tv_sec - begin.tv_sec) + (end.tv_usec - begin.tv_usec)*1e-6; //výpočet času
+    printf("Time: %.3f s\n", timeTaken);
+    
+    /*int poc = 3;
+    char spatneOdp[poc][STRING_LENGHT] = {"jedna","DVA","3"};
+    SimpleTestQuestion("Test","Spravna",poc,spatneOdp);*/
+    /*int pocT = 2; int pocF = 3;
+    char odpovedi[pocT+pocF][STRING_LENGHT] = {"Spravna1","Spravna 2","SpOdp","SpatnODp","Nope"};
+    MultAnswrTestQuestion("Test Mult.",pocT,pocF,odpovedi);*/
+    /*int poc = 3;
+    char odpovedi[poc][STRING_LENGHT] = {"Spravne","správně","spravne"};
+    TextQuestion("Spravne?",poc,odpovedi);*/
 
     /*printf("\n");
     SimpleTestQuestion("Otazka?","Je to otazka",3,"Neni","Nevim","Mozna");
