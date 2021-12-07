@@ -8,44 +8,44 @@ Answer: a
 Correct! :)
 
 Which real life animal was recorded to produce the sound effects of the Ghasts?
-a) Dog
-b) Komodo Dragon
-c) Cat
+a) Komodo Dragon
+b) Cat
+c) Dog
 d) Mouse
 Answer: a
 Wrong! :(
 
 Which pickaxe is faster overall?
-a) Golden Pickaxe
-b) Diamond Pickaxe
-Answer: a
+a) Diamond Pickaxe
+b) Golden Pickaxe
+Answer: b
 Correct! :)
 
 What is considered the final boss of the game?
-Answer: a
+Answer: Ender Dragon
 Wrong! :(
 
 Before Microsoft bought Mojang, Minecraft was being developed in
 a) C#
-b) Brainfuck
-c) Python
-d) Java
-Answer: a
-Wrong! :(
+b) Java
+c) Brainfuck
+d) Python
+Answer: b
+Correct! :)
 
 Who are the main characters?
-a) Steve
+a) Kevin
 b) Alex
 c) Josh
-d) Kevin
+d) Steve
 Answers: a
-Correct! :)
-There are 1 correct answers left.
-m:
+Wrong! :(
+There are 2 correct answers left.
+DeTr:
 
-Time: 5.939 s
-Average time: 1.980 s
+Time: 50.711 s
+Average time: 50.711 s
 
-Score: 2 out of 6
-Average score: 0.666667
-Number of attempts: 3
+Score: 3 out of 6
+Average score: 3.000000
+Number of attempts: 1

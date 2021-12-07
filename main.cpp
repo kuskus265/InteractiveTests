@@ -176,7 +176,7 @@ int main()
     char statsAddr[STRING_LENGHT] = "stats/"; //adresa statistik testu
     strcat(statsAddr,chosenTest.name);
     strcat(statsAddr,"_stats.txt");
-    printf("Address is: %s\n", statsAddr);
+    //printf("Address is: %s\n", statsAddr);
     FILE* stats = fopen(statsAddr,"r");
     /*if( access( statsAddr, F_OK ) == 0 ) {
         printf("File exists\n");
@@ -186,7 +186,7 @@ int main()
     if(stats == NULL)
     {
         stats = fopen(statsAddr,"w");
-        fprintf(stats,"1\n%s\n0\n0\n0",name);
+        fprintf(stats,"0\n");
         fclose(stats);
         stats = fopen(statsAddr,"r");
     }
@@ -197,7 +197,8 @@ int main()
     struct testStat statsOfUser;
     for(int i = 0; i < numOfUsers; i++)
     {
-        //printf("test\n");
+        if(feof(stats)) continue;
+        printf("test\n");
         fgets(testStats[i].userName, STRING_LENGHT, stats);
         testStats[i].userName[strcspn(testStats[i].userName, "\n")] = 0; //odstranění end of line
         fscanf(stats,"%f",&testStats[i].avgScore);
@@ -207,40 +208,55 @@ int main()
         fgetc(stats);
         //testStats[i].avgTime = atoi(fgets(temp, STRING_LENGHT, stats));
         testStats[i].numOfAttempts = atoi(fgets(temp, STRING_LENGHT, stats));
+        printf("%d: %s, %f, %f, %d\n",i,testStats[i].userName,testStats[i].avgScore,testStats[i].avgTime,testStats[i].numOfAttempts);
     }
     fclose(stats);
-
-    //printf("test1\n");
-
+    printf("test2\n");
     short int isNew = 1;
     for(int i = 0; i < numOfUsers+1; i++)
     {
-        //printf("test2\n");
-        if(testStats[i].userName == name)
+        //printf("test3\n");
+        if(strcmp(testStats[i].userName,name) == 0) //stejné
         {
             isNew = 0;
             testStats[i].numOfAttempts++;
-            testStats[i].avgScore = (testStats[i].avgScore + score)/testStats[i].numOfAttempts;
-            testStats[i].avgTime = (testStats[i].avgTime + timeTaken)/testStats[i].numOfAttempts;
+            testStats[i].avgScore = (testStats[i].avgScore*(testStats[i].numOfAttempts-1) + score)/testStats[i].numOfAttempts;
+            testStats[i].avgTime = (testStats[i].avgTime*(testStats[i].numOfAttempts-1) + timeTaken)/testStats[i].numOfAttempts;
             statsOfUser = testStats[i];
         }
     }
+
     if(isNew)
     {
-        int i = numOfUsers+1;
-        testStats[i].userName == name;
-        testStats[i].numOfAttempts++;
-        testStats[i].avgScore = (testStats[i].avgScore + score)/testStats[i].numOfAttempts;
-        testStats[i].avgTime = (testStats[i].avgTime + timeTaken)/testStats[i].numOfAttempts;
+        int i = numOfUsers;
+        strcpy(testStats[i].userName,name);
+        //testStats[i].userName = name;
+        testStats[i].numOfAttempts = 1;
+        testStats[i].avgScore = score;
+        testStats[i].avgTime = timeTaken;
         statsOfUser = testStats[i];
+    }
+    else
+    {
+        int i = numOfUsers;
+        strcpy(testStats[i].userName,"0");
+        //testStats[i].userName = name;
+        testStats[i].numOfAttempts = 0;
+        testStats[i].avgScore = 0;
+        testStats[i].avgTime = 0;
+    }
+
+    for(int i = 0; i < numOfUsers+1; i++)
+    {
+        printf("%d: %s, %f, %f, %d\n",i,testStats[i].userName,testStats[i].avgScore,testStats[i].avgTime,testStats[i].numOfAttempts);
     }
 
     printf("\n%s:\n",name);
     printf("\nTime: %.3f s\n", timeTaken);
     printf("Average time: %.3f s\n",statsOfUser.avgTime);
     printf("\nScore: %d out of %d\n",score,numOfQuestions);
-    printf("Average score: %f\n",statsOfUser.avgScore);
-    printf("Number of attempts: %d",statsOfUser.numOfAttempts);
+    printf("Average score: %.3f\n",statsOfUser.avgScore);
+    printf("Number of attempts: %d\n",statsOfUser.numOfAttempts);
 
     fprintf(output,"%s:\n",name);
     fprintf(output,"\nTime: %.3f s\n", timeTaken);
@@ -252,14 +268,15 @@ int main()
     fclose(output);
 
     stats = fopen(statsAddr,"w");
-    fprintf(stats,"%d",numOfUsers+1);
+    if(isNew)fprintf(stats,"%d",numOfUsers+1);
+    else fprintf(stats,"%d",numOfUsers);
     for(int i = 0; i < numOfUsers+1; i++)
     {
-        fprintf(stats,"%s\n%f\n%f\n%d",testStats[i].userName,testStats[i].avgScore,testStats[i].avgTime,testStats[i].numOfAttempts);
+        fprintf(stats,"\n%s\n%f\n%f\n%d",testStats[i].userName,testStats[i].avgScore,testStats[i].avgTime,testStats[i].numOfAttempts);
     }
     fclose(stats);
 
-    printf("Press ENTER to go to the menu!\n");
+    printf("\nPress ENTER to go to the menu!\n");
     getchar();
     system("@cls||clear"); //vymazání konzole
     goto categoryMenu; // návrat do menu
