@@ -192,12 +192,12 @@ int main()
     }
 
     int numOfUsers = atoi(fgets(temp, STRING_LENGHT, stats));
-    printf("%d - int\n",numOfUsers);
+    //printf("%d - int\n",numOfUsers);
     struct testStat testStats[numOfUsers+1];
     struct testStat statsOfUser;
     for(int i = 0; i < numOfUsers; i++)
     {
-        printf("test\n");
+        //printf("test\n");
         fgets(testStats[i].userName, STRING_LENGHT, stats);
         testStats[i].userName[strcspn(testStats[i].userName, "\n")] = 0; //odstranění end of line
         fscanf(stats,"%f",&testStats[i].avgScore);
@@ -210,12 +210,12 @@ int main()
     }
     fclose(stats);
 
-    printf("test1\n");
+    //printf("test1\n");
 
     short int isNew = 1;
     for(int i = 0; i < numOfUsers+1; i++)
     {
-        printf("test2\n");
+        //printf("test2\n");
         if(testStats[i].userName == name)
         {
             isNew = 0;

@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/Questions.cpp
+Questions.h
+/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/Questions.h
+cstdlib
+-
+
 /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/Questions.h
 iostream
 -
@@ -18,6 +24,8 @@ stdio.h
 
 /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/main.cpp
 sys/time.h
+-
+cstdlib
 -
 Questions.h
 /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/Questions.h

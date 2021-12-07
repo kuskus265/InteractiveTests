@@ -1,5 +1,7 @@
-2
+3
 VideoGameTrivia
 2
 Complete lyrics
 1
+MinecraftTrivia
+2
