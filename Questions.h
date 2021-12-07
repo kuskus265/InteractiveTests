@@ -22,8 +22,8 @@ struct testHeader
 struct testStat
 {
     char userName[STRING_LENGHT];
-    int avgScore;
-    int avgTime;
+    float avgScore;
+    float avgTime;
     int numOfAttempts;
 };
 
