@@ -178,7 +178,7 @@ int MultAnswrTestQuestion(const char question[], int countT, int countF, char (*
             {
                 printf("Wrong! :(\n");
                 fprintf(output,"Wrong! :(\n");
-                score = INT16_MIN; //žádné body
+                score = MIN; //žádné body
             }
         }
     }
@@ -191,7 +191,7 @@ int MultAnswrTestQuestion(const char question[], int countT, int countF, char (*
     {
         printf("There are %d correct answers left.\n", k);
         fprintf(output,"There are %d correct answers left.\n", k);
-        score = INT16_MIN; //žádné body
+        score = MIN; //žádné body
     }
 
     printf("Press ENTER to continue!\n");

@@ -7,6 +7,7 @@
 
 #define STRING_LENGHT 1000
 #define ASCII_a 97
+#define MIN -1000
 
 //enum categories{music,games,math};
 const char categoriesN[][20] = {"music","games","other"};
@@ -16,6 +17,14 @@ struct testHeader
     char name[STRING_LENGHT];
     int category;
     unsigned short int position = 0;
+};
+
+struct testStat
+{
+    char userName[STRING_LENGHT];
+    int avgScore;
+    int avgTime;
+    int numOfAttempts;
 };
 
 void Shuffle(char (*answrs)[STRING_LENGHT], int size); //míchání otázek

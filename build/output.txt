@@ -1,57 +1,42 @@
-Complete lyrics
+VideoGameTrivia
 
-Is this the real life? Is this just...?
-a) ecstasy
-b) Fanta C
-c) fantasy
-d) lies
-Answer: a
-Wrong! :(
-
-Who let the dogs out?
-a) Me
-b) Who, who, who, who, who?
-c) You
-d) John
-e) Everyone
-Answer: a
-Wrong! :(
-
-Never gonna...
-a) make you smile
-b) give you up
-c) say hello
-d) let you down
-Answers: a
-Wrong! :(
-There are 2 correct answers left.
-
-All I want for Christmas is
-Answer: a
-Wrong! :(
-
-Fly me to the moon
-Let me...
-a) play with you and the stars
-b) sing a song for you
-c) sing forevermore
-d) play among the stars
-Answer: a
-Wrong! :(
-
-Hey now, you're...
-a) an old star
-b) a pop star
-c) a rock star
-d) an all star
-e) a night star
-Answers: a
-Wrong! :(
-There are 2 correct answers left.
-
-What will we do with a drunken...?
-Answer: sailor
+WHat is the name of the main protagonist in Legend of Zelda series?
+a) Korok
+b) Link
+c) Mipha
+d) Zelda
+Answer: b
 Correct! :)
-mates:
-Time: 31.678 s
-Score: 1 out of 7
+
+The original trilogy of the Spyro series was realeased for:
+a) Sega Saturn
+b) Sony Playstation
+c) Nintendo 64
+Answer: b
+Correct! :)
+
+What was the release date of original Doom?
+Answer: 1993
+Correct! :)
+
+The sword that is wielded by main protagonist of Legend of Zelda series is called:
+a) Master Sword
+b) The Sword That Seals The Darkness
+c) Keyblade
+d) The Penetrator
+e) Night's Edge
+f) Diamond Sword
+Answers: ac
+Correct! :)
+Wrong! :(
+There are 1 correct answers left.
+
+What was Mario's first job?
+a) Hooker
+b) Carpenter
+c) Plumber
+Answer: a
+Wrong! :(
+m:
+Time: 95.435 s
+Score: 3 out of 5

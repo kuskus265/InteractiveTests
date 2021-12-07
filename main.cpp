@@ -83,7 +83,7 @@ int main()
     char testAddr[STRING_LENGHT] = "tests/"; //adresa testu
     strcat(testAddr,chosenTest.name);
     strcat(testAddr,".txt");
-    printf("Address is: %s\n", testAddr);
+    //printf("Address is: %s\n", testAddr);
 
     while (getchar() != '\n'); //vyprazdneni bufferu
     printf("Press ENTER to start test!\n");
@@ -170,7 +170,18 @@ int main()
 
     gettimeofday(&end, 0); //čas konce
     double timeTaken = (end.tv_sec - begin.tv_sec) + (end.tv_usec - begin.tv_usec)*1e-6; //výpočet času
-    printf("%s:\n",name);
+
+    char statsAddr[STRING_LENGHT] = "stats/"; //adresa statistik testu
+    strcat(statsAddr,chosenTest.name);
+    strcat(statsAddr,"_stats.txt");
+    FILE* stats = fopen(statsAddr,"r");
+    if(stats == NULL)
+    {
+        fopen(statsAddr,"w");
+    }
+    fclose(stats);
+
+    printf("\n%s:\n",name);
     printf("\nTime: %.3f s\n", timeTaken);
     printf("Score: %d out of %d\n",score,numOfQuestions);
 
@@ -184,25 +195,4 @@ int main()
     getchar();
     system("@cls||clear"); //vymazání konzole
     goto categoryMenu; // návrat do menu
-    
-    /*int poc = 3;
-    char spatneOdp[poc][STRING_LENGHT] = {"jedna","DVA","3"};
-    SimpleTestQuestion("Test","Spravna",poc,spatneOdp);*/
-    /*int pocT = 2; int pocF = 3;
-    char odpovedi[pocT+pocF][STRING_LENGHT] = {"Spravna1","Spravna 2","SpOdp","SpatnODp","Nope"};
-    MultAnswrTestQuestion("Test Mult.",pocT,pocF,odpovedi);*/
-    /*int poc = 3;
-    char odpovedi[poc][STRING_LENGHT] = {"Spravne","správně","spravne"};
-    TextQuestion("Spravne?",poc,odpovedi);*/
-
-    /*printf("\n");
-    SimpleTestQuestion("Otazka?","Je to otazka",3,"Neni","Nevim","Mozna");
-    SimpleTestQuestion("Find the impostor","000O000000",9,"0000000000","0000000000","0000000000"
-    ,"0000000000","0000000000","0000000000","0000000000","0000000000","0000000000");
-    SimpleTestQuestion("Jsem dobrej?","Ano",1,"Ne");
-    MultAnswrTestQuestion("Ovoce?",3,4,"Jablko","Boruvka","Malina","Meloun","Okurka","Brambora","Chleba");
-    MultAnswrTestQuestion("Never gonna...",2,2,"give you up","let you down","say hello","make you smile");
-    TextQuestion("x/8 = 1\nx = ?",3,"8","osm","eight"); //pro výpočty to bude chtít vlastní typ otázky možná
-    TextQuestion("Běží ovce běží,\nu nohou jim sněží\na pod nohou jehňata,\nsvítí jako ze zlata.",
-    4,"kameny a oblazky v rece","kameny a oblázky v řece","kameny a kaminky v rece","kameny a kamínky v řece");*/
 }
