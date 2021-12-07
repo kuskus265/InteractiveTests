@@ -111,6 +111,7 @@ int main()
             {
                 fgets(question, STRING_LENGHT, testf); //otázka
                 question[strcspn(question, "\n")] = 0; //odstranění end of line
+                while(strcspn(question, "\\")!=strlen(question))question[strcspn(question, "\\")] = '\n'; // znak \ v souboru znamená \n
                 int count = atoi(fgets(temp, STRING_LENGHT, testf)); //počet špatných odpovědí v int
                 char tAnswr[STRING_LENGHT];
                 char list[count][STRING_LENGHT];
@@ -130,6 +131,7 @@ int main()
             {
                 fgets(question, STRING_LENGHT, testf); //otázka
                 question[strcspn(question, "\n")] = 0; //odstranění end of line
+                while(strcspn(question, "\\")!=strlen(question))question[strcspn(question, "\\")] = '\n'; // znak \ v souboru znamená \n
                 int countT = atoi(fgets(temp, STRING_LENGHT, testf)); //počet správných odpovědí v int
                 int countF = atoi(fgets(temp, STRING_LENGHT, testf)); //počet špatných odpovědí v int
                 char list[countT+countF][STRING_LENGHT];
@@ -147,6 +149,7 @@ int main()
             {
                 fgets(question, STRING_LENGHT, testf); //otázka
                 question[strcspn(question, "\n")] = 0; //odstranění end of line
+                while(strcspn(question, "\\")!=strlen(question))question[strcspn(question, "\\")] = '\n'; // znak \ v souboru znamená \n
                 int count = atoi(fgets(temp, STRING_LENGHT, testf)); //počet správných odpovědí v int
                 char list[count][STRING_LENGHT];
                 for (int i = 0; i < count; i++) //čtení správných odpovědí

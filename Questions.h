@@ -9,7 +9,7 @@
 #define ASCII_a 97
 
 //enum categories{music,games,math};
-const char categoriesN[][20] = {"music","games","math"};
+const char categoriesN[][20] = {"music","games","other"};
 
 struct testHeader
 {
