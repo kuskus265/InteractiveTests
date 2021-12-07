@@ -10,7 +10,7 @@
 #define MIN -1000
 
 //enum categories{music,games,math};
-const char categoriesN[][20] = {"music","games","other"};
+const char categoriesN[][20] = {"Music","Games","Other"};
 
 struct testHeader
 {
