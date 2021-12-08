@@ -273,7 +273,7 @@ int main()
     fclose(stats);
 
     printf("\n");
-    if(score==numOfQuestions)
+    if(score==numOfQuestions) //ohodnocení
     {
         printf("PERFECT!!!\n");
     }
