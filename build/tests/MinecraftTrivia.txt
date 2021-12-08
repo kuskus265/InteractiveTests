@@ -1,4 +1,4 @@
-6
+7
 1
 What ore can you construct complex machines with?
 2
@@ -22,7 +22,11 @@ Diamond Pickaxe
 ?!!**
 3
 What is considered the final boss of the game?
+4
 Ender Dragon
+ender dragon
+Enderdragon
+enderdragon
 ?!!**
 1
 Before Microsoft bought Mojang, Minecraft was being developed in
@@ -41,4 +45,8 @@ Steve
 Kevin
 Josh
 ?!!**
-
+3
+What is the chance when breeding axolotls it will be a rare blue variant?\It is 1/...
+1
+1200
+?!!**

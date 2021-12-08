@@ -5,13 +5,16 @@
 
 int main() 
 {
-    srand(time(NULL));
+    srand(time(NULL)); //seed random fce
 
-    printf("\n");
+    system("@cls||clear"); //vymazání konzole
+    //printf("\n");
 
     char name[STRING_LENGHT];
     printf("Please enter your name: ");
     scanf("%s",&name[0]);
+    system("@cls||clear"); //vymazání konzole
+    printf("Welcome to INTERACTIVE TESTS, %s!\n\n",name);
 
     char temp[STRING_LENGHT]; //temporary string pro int a chvilkové věci xD
     FILE* header = fopen("headers.txt","r"); //načtení hlavičkového souboru
@@ -95,7 +98,7 @@ int main()
     int numOfQuestions; //počet otázek
     int score = 0;
 
-    FILE* output = fopen("output.txt","w");
+    FILE* output = fopen("output.txt","w"); //soubor výstupu z testu
     fprintf(output,"%s\n",chosenTest.name);
 
     FILE* testf = fopen(testAddr,"r"); //otevři test
@@ -175,15 +178,10 @@ int main()
 
     char statsAddr[STRING_LENGHT] = "stats/"; //adresa statistik testu
     strcat(statsAddr,chosenTest.name);
-    strcat(statsAddr,"_stats.txt");
+    strcat(statsAddr,"_stats.txt"); //vytvoření adresy
     //printf("Address is: %s\n", statsAddr);
-    FILE* stats = fopen(statsAddr,"r");
-    /*if( access( statsAddr, F_OK ) == 0 ) {
-        printf("File exists\n");
-    } else {
-        printf("File not exists\n");
-    }*/
-    if(stats == NULL)
+    FILE* stats = fopen(statsAddr,"r"); //otevření souboru se statistikami
+    if(stats == NULL) //pokud soubor není, vytvoř ho a zapiš počet uživatelů (0)
     {
         stats = fopen(statsAddr,"w");
         fprintf(stats,"0\n");
@@ -191,42 +189,40 @@ int main()
         stats = fopen(statsAddr,"r");
     }
 
-    int numOfUsers = atoi(fgets(temp, STRING_LENGHT, stats));
+    int numOfUsers = atoi(fgets(temp, STRING_LENGHT, stats)); //počet uživatelů
     //printf("%d - int\n",numOfUsers);
-    struct testStat testStats[numOfUsers+1];
-    struct testStat statsOfUser;
-    for(int i = 0; i < numOfUsers; i++)
+    struct testStat testStats[numOfUsers+1]; //pole statistik
+    struct testStat statsOfUser; //statistiky vybraného uživatele
+
+    for(int i = 0; i < numOfUsers; i++) //čtení hodnot ze souboru
     {
         if(feof(stats)) continue;
-        printf("test\n");
+        
         fgets(testStats[i].userName, STRING_LENGHT, stats);
         testStats[i].userName[strcspn(testStats[i].userName, "\n")] = 0; //odstranění end of line
         fscanf(stats,"%f",&testStats[i].avgScore);
         fgetc(stats);
-        //testStats[i].avgScore = atoi(fgets(temp, STRING_LENGHT, stats));
         fscanf(stats,"%f",&testStats[i].avgTime);
         fgetc(stats);
-        //testStats[i].avgTime = atoi(fgets(temp, STRING_LENGHT, stats));
         testStats[i].numOfAttempts = atoi(fgets(temp, STRING_LENGHT, stats));
-        printf("%d: %s, %f, %f, %d\n",i,testStats[i].userName,testStats[i].avgScore,testStats[i].avgTime,testStats[i].numOfAttempts);
+        //printf("%d: %s, %f, %f, %d\n",i,testStats[i].userName,testStats[i].avgScore,testStats[i].avgTime,testStats[i].numOfAttempts);
     }
     fclose(stats);
-    printf("test2\n");
-    short int isNew = 1;
+
+    short int isNew = 1; //hodnota, jestli je uživatel nový
     for(int i = 0; i < numOfUsers+1; i++)
     {
-        //printf("test3\n");
-        if(strcmp(testStats[i].userName,name) == 0) //stejné
+        if(strcmp(testStats[i].userName,name) == 0) //stejné - uživatel už existuje v souboru
         {
             isNew = 0;
-            testStats[i].numOfAttempts++;
+            testStats[i].numOfAttempts++; //výpočty statistických hodnot
             testStats[i].avgScore = (testStats[i].avgScore*(testStats[i].numOfAttempts-1) + score)/testStats[i].numOfAttempts;
             testStats[i].avgTime = (testStats[i].avgTime*(testStats[i].numOfAttempts-1) + timeTaken)/testStats[i].numOfAttempts;
-            statsOfUser = testStats[i];
+            statsOfUser = testStats[i]; //uložení vybraného uživatele
         }
     }
 
-    if(isNew)
+    if(isNew) //nový uživatel - zapsání prvotních hodnot (nejsou nutné výpočty)
     {
         int i = numOfUsers;
         strcpy(testStats[i].userName,name);
@@ -236,7 +232,7 @@ int main()
         testStats[i].avgTime = timeTaken;
         statsOfUser = testStats[i];
     }
-    else
+    else //nulové hodnoty na pozici určenou, pokud je uživatel nový
     {
         int i = numOfUsers;
         strcpy(testStats[i].userName,"0");
@@ -246,35 +242,53 @@ int main()
         testStats[i].avgTime = 0;
     }
 
-    for(int i = 0; i < numOfUsers+1; i++)
+    /*for(int i = 0; i < numOfUsers+1; i++)
     {
         printf("%d: %s, %f, %f, %d\n",i,testStats[i].userName,testStats[i].avgScore,testStats[i].avgTime,testStats[i].numOfAttempts);
-    }
+    }*/
 
     printf("\n%s:\n",name);
     printf("\nTime: %.3f s\n", timeTaken);
     printf("Average time: %.3f s\n",statsOfUser.avgTime);
     printf("\nScore: %d out of %d\n",score,numOfQuestions);
     printf("Average score: %.3f\n",statsOfUser.avgScore);
-    printf("Number of attempts: %d\n",statsOfUser.numOfAttempts);
+    printf("\nNumber of attempts: %d\n",statsOfUser.numOfAttempts);
 
     fprintf(output,"%s:\n",name);
     fprintf(output,"\nTime: %.3f s\n", timeTaken);
     fprintf(output,"Average time: %.3f s\n",statsOfUser.avgTime);
     fprintf(output,"\nScore: %d out of %d\n",score,numOfQuestions);
     fprintf(output,"Average score: %f\n",statsOfUser.avgScore);
-    fprintf(output,"Number of attempts: %d\n",statsOfUser.numOfAttempts);
+    fprintf(output,"\nNumber of attempts: %d\n",statsOfUser.numOfAttempts);
 
     fclose(output);
 
-    stats = fopen(statsAddr,"w");
-    if(isNew)fprintf(stats,"%d",numOfUsers+1);
+    stats = fopen(statsAddr,"w"); //zpětný zápis všech statistik (write smaže obsah souboru)
+    if(isNew)fprintf(stats,"%d",numOfUsers+1); //pokud byl přidán nový uživatel
     else fprintf(stats,"%d",numOfUsers);
     for(int i = 0; i < numOfUsers+1; i++)
     {
         fprintf(stats,"\n%s\n%f\n%f\n%d",testStats[i].userName,testStats[i].avgScore,testStats[i].avgTime,testStats[i].numOfAttempts);
     }
     fclose(stats);
+
+    printf("\n");
+    if(score==numOfQuestions)
+    {
+        printf("PERFECT!!!\n");
+    }
+    else if((float)score > (float)numOfQuestions*0.75)
+    {
+        printf("Wow, almost without mistake!\n");
+    }
+    else if((float)score >= (float)numOfQuestions*0.5)
+    {
+        printf("Good job.\n");
+    }
+    else
+    {
+        printf("Better luck next time :)\n");
+    }
 
     printf("\nPress ENTER to go to the menu!\n");
     getchar();
