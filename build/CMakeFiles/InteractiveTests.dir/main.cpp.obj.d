@@ -14,11 +14,18 @@ CMakeFiles/InteractiveTests.dir/main.cpp.obj: \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\sys\timeb.h \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\sec_api\sys\timeb_s.h \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\pthread_time.h \
- C:\Users\kusku\Repos\InteractiveTests\Questions.h \
- c:\users\kusku\winbuilds\include\c++\4.8.3\iostream \
+ c:\users\kusku\winbuilds\include\c++\4.8.3\cstdlib \
  c:\users\kusku\winbuilds\include\c++\4.8.3\x86_64-w64-mingw32\bits\c++config.h \
  c:\users\kusku\winbuilds\include\c++\4.8.3\x86_64-w64-mingw32\bits\os_defines.h \
  c:\users\kusku\winbuilds\include\c++\4.8.3\x86_64-w64-mingw32\bits\cpu_defines.h \
+ c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\stdlib.h \
+ c:\users\kusku\winbuilds\lib64\gcc\x86_64-w64-mingw32\4.8.3\include-fixed\limits.h \
+ c:\users\kusku\winbuilds\lib64\gcc\x86_64-w64-mingw32\4.8.3\include-fixed\syslimits.h \
+ c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\limits.h \
+ c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\sec_api\stdlib_s.h \
+ c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\malloc.h \
+ C:\Users\kusku\Repos\InteractiveTests\Questions.h \
+ c:\users\kusku\winbuilds\include\c++\4.8.3\iostream \
  c:\users\kusku\winbuilds\include\c++\4.8.3\ostream \
  c:\users\kusku\winbuilds\include\c++\4.8.3\ios \
  c:\users\kusku\winbuilds\include\c++\4.8.3\iosfwd \
@@ -67,9 +74,6 @@ CMakeFiles/InteractiveTests.dir/main.cpp.obj: \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\errno.h \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\sys\types.h \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\process.h \
- c:\users\kusku\winbuilds\lib64\gcc\x86_64-w64-mingw32\4.8.3\include-fixed\limits.h \
- c:\users\kusku\winbuilds\lib64\gcc\x86_64-w64-mingw32\4.8.3\include-fixed\syslimits.h \
- c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\limits.h \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\signal.h \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\pthread_signal.h \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\pthread_compat.h \
@@ -108,7 +112,7 @@ CMakeFiles/InteractiveTests.dir/main.cpp.obj: \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\_mingw_stdarg.h \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\string.h \
  c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\sec_api\string_s.h \
- c:\users\kusku\winbuilds\include\c++\4.8.3\cstdlib \
- c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\stdlib.h \
- c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\sec_api\stdlib_s.h \
- c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\malloc.h
+ c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\unistd.h \
+ c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\io.h \
+ c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\sec_api\io_s.h \
+ c:\users\kusku\winbuilds\x86_64-w64-mingw32\include\getopt.h

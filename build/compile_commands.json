@@ -1,12 +1,12 @@
 [
 {
-  "directory": "/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10   -g -o CMakeFiles/InteractiveTests.dir/main.cpp.o -c /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/main.cpp",
-  "file": "/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/main.cpp"
+  "directory": "C:/Users/kusku/Repos/InteractiveTests/build",
+  "command": "C:\\Users\\kusku\\winbuilds\\bin\\x86_64-w64-mingw32-g++.exe   -g -o CMakeFiles\\InteractiveTests.dir\\main.cpp.obj -c C:\\Users\\kusku\\Repos\\InteractiveTests\\main.cpp",
+  "file": "C:/Users/kusku/Repos/InteractiveTests/main.cpp"
 },
 {
-  "directory": "/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10   -g -o CMakeFiles/InteractiveTests.dir/Questions.cpp.o -c /home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/Questions.cpp",
-  "file": "/home/matej/Plocha/Skola/Vejska/Programovani/InteractiveTests/Questions.cpp"
+  "directory": "C:/Users/kusku/Repos/InteractiveTests/build",
+  "command": "C:\\Users\\kusku\\winbuilds\\bin\\x86_64-w64-mingw32-g++.exe   -g -o CMakeFiles\\InteractiveTests.dir\\Questions.cpp.obj -c C:\\Users\\kusku\\Repos\\InteractiveTests\\Questions.cpp",
+  "file": "C:/Users/kusku/Repos/InteractiveTests/Questions.cpp"
 }
 ]
