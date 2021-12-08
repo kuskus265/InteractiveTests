@@ -1,0 +1,57 @@
+MinecraftTrivia
+
+What ore can you construct complex machines with?
+a) Shulker
+b) Wireore
+c) Redstone
+Answer: a
+Wrong! :(
+
+Which real life animal was recorded to produce the sound effects of the Ghasts?
+a) Cat
+b) Komodo Dragon
+c) Dog
+d) Mouse
+Answer: a
+Correct! :)
+
+Which pickaxe is faster overall?
+a) Golden Pickaxe
+b) Diamond Pickaxe
+Answer: a
+Correct! :)
+
+What is considered the final boss of the game?
+Answer: a
+Wrong! :(
+
+Before Microsoft bought Mojang, Minecraft was being developed in
+a) Brainfuck
+b) C#
+c) Python
+d) Java
+Answer: a
+Wrong! :(
+
+Who are the main characters?
+a) Alex
+b) Kevin
+c) Josh
+d) Steve
+Answers: a
+Correct! :)
+There are 1 correct answers left.
+
+What is the chance when breeding axolotls it will be a rare blue variant?
+It is 1/...
+Answer: a
+Wrong! :(
+Kokot:
+
+Time: 8.560 s
+Average time: 8.560 s
+
+Score: 2 out of 7
+Average score: 2.000000
+
+Number of attempts: 1

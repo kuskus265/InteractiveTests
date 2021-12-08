@@ -1,0 +1,12 @@
+[
+{
+  "directory": "C:/Users/kusku/Repos/InteractiveTests/build",
+  "command": "C:\\Users\\kusku\\winbuilds\\bin\\x86_64-w64-mingw32-g++.exe   -g -o CMakeFiles\\InteractiveTests.dir\\main.cpp.obj -c C:\\Users\\kusku\\Repos\\InteractiveTests\\main.cpp",
+  "file": "C:/Users/kusku/Repos/InteractiveTests/main.cpp"
+},
+{
+  "directory": "C:/Users/kusku/Repos/InteractiveTests/build",
+  "command": "C:\\Users\\kusku\\winbuilds\\bin\\x86_64-w64-mingw32-g++.exe   -g -o CMakeFiles\\InteractiveTests.dir\\Questions.cpp.obj -c C:\\Users\\kusku\\Repos\\InteractiveTests\\Questions.cpp",
+  "file": "C:/Users/kusku/Repos/InteractiveTests/Questions.cpp"
+}
+]

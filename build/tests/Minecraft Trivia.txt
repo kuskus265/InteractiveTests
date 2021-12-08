@@ -1,0 +1,52 @@
+7
+1
+What ore can you construct complex machines with?
+2
+Redstone
+Wireore
+Shulker
+?!!**
+1
+Which real life animal was recorded to produce the sound effects of the Ghasts?
+3
+Cat
+Dog
+Komodo Dragon
+Mouse
+?!!**
+1
+Which pickaxe is faster overall?
+1
+Golden Pickaxe
+Diamond Pickaxe
+?!!**
+3
+What is considered the final boss of the game?
+4
+Ender Dragon
+ender dragon
+Enderdragon
+enderdragon
+?!!**
+1
+Before Microsoft bought Mojang, Minecraft was being developed in
+3
+Java
+Python
+C#
+Brainfuck
+?!!**
+2
+Who are the main characters?
+2
+2
+Alex
+Steve
+Kevin
+Josh
+?!!**
+3
+What is the chance when breeding axolotls it will be a rare blue variant?\It is 1/...
+1
+1200
+?!!**

@@ -4,7 +4,7 @@ project(InteractiveTests VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(InteractiveTests main.cpp)
+add_executable(InteractiveTests main.cpp Questions.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
